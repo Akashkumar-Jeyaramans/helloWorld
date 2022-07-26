@@ -7,7 +7,7 @@ package helloworld;
 import "google/api/annotations.proto";
 
 service Greeter{
-    rpc SayHello(helloRequest) returns (helloReply){
+    rpc SayHello(nameRequest) returns (nameReply){
         option (google.api.http) = {
             post :"/v1/example/echo",
             body:"*"
@@ -15,12 +15,13 @@ service Greeter{
     }
 }
 
-message helloRequest{
-    string name = 1;
+message nameRequest{
+    string firstname = 1;
+    string lastname = 2;
 }
 
-message helloReply{
-    string message = 1;
+message nameReply{
+    string fullname = 1;
 }
 
 // syntax = "proto3";
