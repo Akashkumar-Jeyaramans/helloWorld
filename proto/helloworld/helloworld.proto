@@ -2,10 +2,17 @@ syntax="proto3";
 
 package helloworld;
 
-option go_package = "./";
+ option go_package = "github.com/Akashkumar-Jeyaramans/helloWorld/proto/helloworld";
+//option go_package="./";
+import "google/api/annotations.proto";
 
 service Greeter{
-    rpc SayHello(helloRequest) returns (helloReply){}
+    rpc SayHello(helloRequest) returns (helloReply){
+        option (google.api.http) = {
+            post :"/v1/example/echo",
+            body:"*"
+        };
+    }
 }
 
 message helloRequest{
@@ -24,6 +31,34 @@ message helloReply{
 // service Greeter {
 //   // Sends a greeting
 //   rpc SayHello (HelloRequest) returns (HelloReply) {}
+// }
+
+// // The request message containing the user's name
+// message HelloRequest {
+//   string name = 1;
+// }
+
+// // The response message containing the greetings
+// message HelloReply {
+//   string message = 1;
+// }
+
+
+// syntax = "proto3";
+
+// package helloworld;
+
+// import "google/api/annotations.proto";
+
+// // Here is the overall greeting service definition where we define all our endpoints
+// service Greeter {
+//   // Sends a greeting
+//   rpc SayHello (HelloRequest) returns (HelloReply) {
+//     option (google.api.http) = {
+//       post: "/v1/example/echo"
+//       body: "*"
+//     };
+//   }
 // }
 
 // // The request message containing the user's name
